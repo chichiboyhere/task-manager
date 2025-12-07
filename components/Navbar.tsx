@@ -8,10 +8,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-
+import ThemeToggle from "@/theme/theme-toggle";
+import DarkLogo from "../public/taskflow-dark-theme.png";
+import LightLogo from "../public/site-logo.png";
+import { useTheme } from "next-themes";
 export default function Navbar() {
   const { isSignedIn } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { theme } = useTheme();
+
+  const currentLogo = theme === "dark" ? DarkLogo : LightLogo;
 
   //  useEffect(() => {
   //   if (menuOpen) {
@@ -50,16 +57,17 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="flex justify-between items-center py-4 bg-white shadow md:px-10 px-5">
+    <nav className="flex justify-between items-center py-4 bg-white shadow md:px-10 px-5 dark:bg-[#191919] text-[#37352f] dark:text-[#ffffffcf]  sticky top-0 z-100">
       <Link href="/" className="text-xl font-semibold">
         <Image
-          src="/site-logo.png"
+          src={currentLogo}
           alt="Site  logo"
           width={200}
           height={50}
           priority
         />
       </Link>
+      <ThemeToggle />
       <div className="hidden md:flex gap-4 items-center">
         {isSignedIn ? (
           <>
@@ -87,7 +95,7 @@ export default function Navbar() {
               animate="visible"
               exit="exit"
               variants={containerVariants}
-              className="fixed inset-0 z-50 bg-white dark:bg-gray-800 backdrop-blur-lg p-8 flex flex-col items-center justify-center"
+              className="fixed inset-0  bg-white dark:bg-gray-800 backdrop-blur-lg p-8 flex flex-col items-center justify-center opacity-100"
             >
               <button
                 onClick={() => setMenuOpen(false)}

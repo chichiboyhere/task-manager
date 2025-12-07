@@ -35,7 +35,9 @@
 
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import ThemeProvider from "@/theme/theme-provider";
 import Navbar from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 
 export const metadata = {
@@ -50,11 +52,19 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className="min-h-screen bg-gray-50 text-gray-900">
-          <Navbar />
-          {children}
-          <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
+      <html lang="en" suppressHydrationWarning>
+        <body className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-800  dark:text-[#ffffffcf]">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+            <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
+            <Footer />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

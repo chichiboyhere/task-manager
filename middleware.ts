@@ -1,13 +1,3 @@
-// import { authMiddleware } from "@clerk/nextjs";
-
-// export default authMiddleware({
-//   publicRoutes: ["/"], // Homepage can be public
-// });
-
-// export const config = {
-//   matcher: ["/((?!_next|static|.*\\..*|favicon.ico).*)"],
-// };
-
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
 export default clerkMiddleware();

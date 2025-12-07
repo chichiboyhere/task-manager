@@ -68,17 +68,17 @@ const TaskSlider: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto shadow-2xl rounded-xl overflow-hidden">
+    <div className="relative w-full max-w-4xl  mx-auto shadow-2xl rounded-xl overflow-hidden ">
       {/* --- Slider Container (Scrollable Area) --- */}
       <div
         // 4. Assign the ref to the div
         ref={sliderRef}
-        className="flex w-full overflow-x-scroll snap-x snap-mandatory scroll-smooth h-[500px] md:h-[600px] lg:h-[700px] scrollbar-hide"
+        className="flex w-full overflow-x-scroll snap-x snap-mandatory scroll-smooth h-[500px] md:h-[600px] lg:h-[700px] scrollbar-hide "
       >
         {slides.map((slide: Slide, index: number) => (
           <div
             key={index}
-            className="w-full flex-shrink-0 snap-center relative"
+            className="w-full shrink-0 snap-center relative"
             style={{ width: "100%" }}
           >
             {/* Background Image with Overlay */}
