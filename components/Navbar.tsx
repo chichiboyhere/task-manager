@@ -10,7 +10,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import ThemeToggle from "@/theme/theme-toggle";
 import DarkLogo from "../public/taskflow-dark-theme.png";
-import LightLogo from "../public/site-logo.png";
+import LightLogo from "../public/taskflow-light-theme.png";
 import { useTheme } from "next-themes";
 export default function Navbar() {
   const { isSignedIn } = useUser();
@@ -19,12 +19,6 @@ export default function Navbar() {
   const { theme } = useTheme();
 
   const currentLogo = theme === "dark" ? DarkLogo : LightLogo;
-
-  //  useEffect(() => {
-  //   if (menuOpen) {
-  //     setMenuOpen(false);
-  //   }
-  // }, [isSignedIn]);
 
   useEffect(() => {
     setMenuOpen(false);
