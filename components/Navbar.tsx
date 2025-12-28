@@ -9,20 +9,23 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import ThemeToggle from "@/theme/theme-toggle";
-import DarkLogo from "../public/taskflow-dark-theme.png";
-import LightLogo from "../public/taskflow-light-theme.png";
+//import DarkLogo from "../public/taskflow-dark-theme.png";
+//import LightLogo from "../public/taskflow-light-theme.png";
 import { useTheme } from "next-themes";
 export default function Navbar() {
   const { isSignedIn } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const { theme } = useTheme();
-
-  const currentLogo = theme === "dark" ? DarkLogo : LightLogo;
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMenuOpen(false);
   }, [isSignedIn]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navItemsSignedOut = [
     { label: "Home", href: "/" },
@@ -54,11 +57,18 @@ export default function Navbar() {
     <nav className="flex justify-between items-center py-4 bg-white shadow md:px-10 px-5 dark:bg-[#191919] text-[#37352f] dark:text-[#ffffffcf]  sticky top-0 z-100">
       <Link href="/" className="text-xl font-semibold">
         <Image
-          src={currentLogo}
-          alt="Site  logo"
+          src={
+            !mounted
+              ? "/taskflow-light-theme.png"
+              : resolvedTheme === "dark"
+              ? "/taskflow-dark-theme.png"
+              : "/taskflow-light-theme.png"
+          }
+          alt="Site logo"
           width={200}
           height={50}
           priority
+          className="transition-opacity duration-200"
         />
       </Link>
       <ThemeToggle />
