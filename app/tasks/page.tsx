@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import TaskList from "@/components/TaskList";
-// export default function TasksPage() {
 
 export default function TasksPage({ initialTasks }: { initialTasks: any[] }) {
   const [tasks, setTasks] = useState(initialTasks);
